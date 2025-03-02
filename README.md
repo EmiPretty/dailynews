@@ -15,7 +15,7 @@ Assurez-vous d'avoir les outils suivants installés sur votre machine :
    ```bash
    git clone https://github.com/votre-utilisateur/dailynews.git
 
-2. **Installation des dépendances : Naviguez vers le répertoire du projet et installez les dépendances avec npm :**
+2. **Installation des dépendances :**
     cd dailynews
     npm install
 
