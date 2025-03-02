@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <h2 class="text-center mb-4">La liste des Flux RSS</h2>
+    <h2 class="mb-4">La liste des Flux RSS</h2>
     <ul v-if="feeds.length > 0" class="list-group">
       <li
         v-for="(feed, index) in feeds"
@@ -26,12 +26,12 @@
 </template>
 
 <script>
-import RssForm from './RssForm.vue';
+import FormulaireRss from './FormulaireRss.vue';
 
 export default {
-  name: 'RssList',
+  name: 'ListFlux',
   components: {
-    RssForm,
+    FormulaireRss,
   },
   data() {
     return {

@@ -18,7 +18,7 @@
           </h3>
           <img v-if="newsItem.imageUrl" :src="newsItem.imageUrl" alt="Image de l'actualité" class="img-fluid mb-2" />
           <p class="card-text" v-html="newsItem.description"></p>
-          <button @click="removeFromPreferences(index)" class="btn btn-danger">Supprimer</button>
+          <button @click="confirmRemoveFromPreferences(index)" class="btn btn-danger">Supprimer</button>
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@
     <div v-else>
       <ul class="list-group">
         <li v-for="(feed, index) in savedFeedPreferences" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ feed.title }} ({{ feed.url }})</span>
-          <button @click="removeFromFeedPreferences(index)" class="btn btn-danger btn-sm">Supprimer</button>
+          <span>{{ feed.title }} 📎 : <a :href="feed.url" target="_blank" rel="noopener noreferrer">{{ feed.url }}</a></span>
+          <button @click="confirmRemoveFromFeedPreferences(index)" class="btn btn-danger btn-sm">Supprimer</button>
         </li>
       </ul>
     </div>
@@ -89,6 +89,20 @@ export default {
       const savedFeedsPref = localStorage.getItem('savedFeedPreferences');
       if (savedFeedsPref) {
         this.savedFeedPreferences = JSON.parse(savedFeedsPref);
+      }
+    },
+    confirmRemoveFromPreferences(index) {
+      const confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer cette actualité ?");
+
+      if (confirmDelete) {
+        this.removeFromPreferences(index);
+      }
+    },
+    confirmRemoveFromFeedPreferences(index) {
+      const confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer ce flux ?");
+
+      if (confirmDelete) {
+        this.removeFromFeedPreferences(index);
       }
     },
     removeFromPreferences(index) {

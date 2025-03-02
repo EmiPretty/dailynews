@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'RssForm',
+  name: 'FormulaireRss',
   props: {},
   emits: ['save'],
   data() {

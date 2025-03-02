@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { parseRssFeed } from '../services/rssService';
+import { getRssFeed } from '../services/rss';
 
 export default {
   name: 'NewsDetail',
@@ -61,7 +61,7 @@ export default {
       }
 
       try {
-          const newsItems = await parseRssFeed(feed.url);
+          const newsItems = await getRssFeed(feed.url);
           const index = parseInt(this.newsIndex, 10);
           if (isNaN(index) || index < 0 || index >= newsItems.length) {
               this.newsItem = null;

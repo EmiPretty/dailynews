@@ -48,11 +48,16 @@ export default {
 
 .navbar-nav .nav-link {
   color: black;
+  transition: color 0.3s, text-decoration 0.3s;
 }
 
-.navbar-nav .router-link-exact-active {
+.navbar-nav .nav-link:hover {
+  color: rgb(24, 139, 49);
   text-decoration: underline;
-  font-weight: bold;
-  color: rgb(10, 0, 84);
+}
+
+.navbar-nav  {
+  color: rgb(24, 139, 49);
+  font-weight: 500;
 }
 </style>
