@@ -1,3 +1,5 @@
+Développé par Imène Bentifraouine et Nassim Bentifraouine
+
 # DailyNews Application - Vue.js
 
 DailyNews est une application de gestion centralisée des flux RSS qui permet à l'utilisateur d'enregistrer, gérer et afficher des actualités provenant de flux RSS, avec des fonctionnalités de sauvegarde des préférences et de recherche des news.
