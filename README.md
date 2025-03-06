@@ -15,7 +15,7 @@ Assurez-vous d'avoir les outils suivants installés sur votre machine :
 1. **Cloner le projet** :
    Si vous n'avez pas encore cloné le projet, utilisez la commande suivante :
    ```bash
-   git clone https://github.com/votre-utilisateur/dailynews.git
+   git clone https://github.com/EmiPretty/dailynews.git
 
 2. **Installation des dépendances :**
     cd dailynews
