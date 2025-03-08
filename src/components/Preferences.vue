@@ -1,35 +1,35 @@
 <template>
   <div class="container mt-4">
-    <h2 class="mb-3">Actualités enregistrées</h2>
+    <h2 class="mb-3 text-primary">Actualités enregistrées 📰</h2>
 
     <input 
       type="text" 
       v-model="searchTerm" 
-      class="form-control mb-3" 
-      placeholder="Rechercher dans les actualités enregistrées..." 
+      class="form-control mb-3 border-primary" 
+      placeholder="🔍 Rechercher dans les actualités enregistrées..." 
     />
 
-    <div v-if="filteredNews.length === 0" class="alert alert-warning">Aucune actualité correspondante trouvée.</div>
+    <div v-if="filteredNews.length === 0" class="alert alert-warning text-center">Aucune actualité correspondante trouvée. 😞</div>
     <div v-else>
-      <div v-for="(newsItem, index) in filteredNews" :key="index" class="card mb-3">
+      <div v-for="(newsItem, index) in filteredNews" :key="index" class="card mb-3 shadow-sm">
         <div class="card-body">
-          <h3 class="card-title">
-            <a :href="newsItem.link" target="_blank" rel="noopener noreferrer">{{ newsItem.title }}</a>
+          <h3 class="card-title text-info">
+            <a :href="newsItem.link" target="_blank" rel="noopener noreferrer" class="text-decoration-none">{{ newsItem.title }}</a>
           </h3>
-          <img v-if="newsItem.imageUrl" :src="newsItem.imageUrl" alt="Image de l'actualité" class="img-fluid mb-2" />
+          <img v-if="newsItem.imageUrl" :src="newsItem.imageUrl" alt="Image de l'actualité" class="img-fluid rounded mb-2" />
           <p class="card-text" v-html="newsItem.description"></p>
-          <button @click="confirmRemoveFromPreferences(index)" class="btn btn-danger">Supprimer</button>
+          <button @click="confirmRemoveFromPreferences(index)" class="btn btn-danger">❌ Supprimer</button>
         </div>
       </div>
     </div>
 
-    <h2 class="mt-4">Flux enregistrés</h2>
-    <div v-if="savedFeedPreferences.length === 0" class="alert alert-info">Aucun flux enregistré pour le moment.</div>
+    <h2 class="mt-4 text-success">Flux enregistrés 📡</h2>
+    <div v-if="savedFeedPreferences.length === 0" class="alert alert-info text-center">Aucun flux enregistré pour le moment. 🌱</div>
     <div v-else>
       <ul class="list-group">
         <li v-for="(feed, index) in savedFeedPreferences" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ feed.title }} 📎 : <a :href="feed.url" target="_blank" rel="noopener noreferrer">{{ feed.url }}</a></span>
-          <button @click="confirmRemoveFromFeedPreferences(index)" class="btn btn-danger btn-sm">Supprimer</button>
+          <span>{{ feed.title }} 📎 : <a :href="feed.url" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-success">{{ feed.url }}</a></span>
+          <button @click="confirmRemoveFromFeedPreferences(index)" class="btn btn-danger btn-sm">❌ Supprimer</button>
         </li>
       </ul>
     </div>
@@ -118,3 +118,78 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+/* Custom styles to enhance the UI */
+.container {
+  font-family: 'Arial', sans-serif;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-info {
+  color: #17a2b8;
+}
+
+.card-body {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.card-title a {
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  color: #0056b3;
+}
+
+.card-text {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+button {
+  font-size: 1rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+input[type="text"] {
+  border-radius: 5px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.alert {
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 10px;
+}
+</style>

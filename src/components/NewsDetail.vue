@@ -2,15 +2,15 @@
   <div class="container mt-4">
     <div v-if="newsItem" class="card shadow-sm">
       <div class="card-body">
-        <h2 class="card-title">{{ newsItem.title }}</h2>
+        <h2 class="card-title text-primary">{{ newsItem.title }} 📢</h2>
         <img v-if="newsItem.imageUrl" :src="newsItem.imageUrl" alt="Image de l'actualité" class="img-fluid rounded mb-3" />
         <p v-html="newsItem.description" class="card-text"></p>
-        <button class="btn btn-primary me-2" @click="saveToPreferences">Enregistrer pour plus tard</button>
-        <router-link :to="{ path: `/news/${Index}` }" class="btn btn-secondary">Retour à la liste</router-link>
+        <button class="btn btn-primary me-2" @click="saveToPreferences">⭐ Enregistrer pour plus tard</button>
+        <router-link :to="{ path: `/news/${Index}` }" class="btn btn-secondary">🔙 Retour à la liste</router-link>
       </div>
     </div>
     <div v-else class="alert alert-danger">
-      Actualité introuvable.
+      ❌ Actualité introuvable.
     </div>
   </div>
 </template>
@@ -84,9 +84,9 @@ export default {
       if (!isDuplicate) {
         savedNews.push(this.newsItem);
         localStorage.setItem('savedNews', JSON.stringify(savedNews));
-        alert('Actualité enregistrée dans les préférences !');
+        alert('🌟 Actualité enregistrée dans les préférences !');
       } else {
-        alert('Actualité déjà enregistrée !');
+        alert('🚫 Actualité déjà enregistrée !');
       }
     },
   },
@@ -97,5 +97,45 @@ export default {
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.card-body {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.card-title:hover {
+  color: #0056b3;
+}
+
+.card-text {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+button, .btn-secondary {
+  font-size: 1.1rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn-secondary:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.alert {
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: #ffcccc;
+  color: #900;
 }
 </style>

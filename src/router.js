@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import ListFlux from './components/ListFlux.vue';
 import NewsDetail from './components/NewsDetail.vue';
 import RssNews from './components/RssNews.vue';
-import PageIntrouvable from './components/PageIntrouvable.vue';
+import PageIntrouvable from './Views/PageIntrouvable.vue';
 
 
 

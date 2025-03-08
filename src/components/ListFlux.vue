@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <h2 class="mb-4">La liste des Flux RSS</h2>
+    <h2 class="mb-4">La liste des Flux RSS 📑</h2>
     <ul v-if="feeds.length > 0" class="list-group">
       <li
         v-for="(feed, index) in feeds"
@@ -11,16 +11,16 @@
         </span>
         <div>
           <button @click="editFeed(index)" class="btn btn-sm btn-outline-primary me-2">
-            Modifier
+            Modifier ✏️
           </button>
           <button @click="deleteFeed(index)" class="btn btn-sm btn-outline-danger">
-            Supprimer
+            Supprimer ❌
           </button>
         </div>
       </li>
     </ul>
     <div v-else class="alert alert-info text-center mt-3">
-      Aucun flux RSS ajouté pour le moment.
+      Aucun flux RSS ajouté pour le moment. 📤
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     return {
       feeds: [],
       selectedFeed: { title: '', url: '' },
-      formTitle: "Ajouter un flux RSS",
+      formTitle: "Ajouter un flux RSS ➕",
     };
   },
   created() {
@@ -63,7 +63,7 @@ export default {
         this.feeds[objIndex].title = newFeed.title;
         this.feeds[objIndex].url = newFeed.url;
         this.selectedFeed = { title: '', url: '' };
-        this.formTitle = "Ajouter un flux RSS";
+        this.formTitle = "Ajouter un flux RSS ➕";
       } else {
         this.feeds.push(newFeed);
       }
@@ -95,5 +95,4 @@ export default {
 .hover-green:hover {
   color: green !important;
 }
-
 </style>

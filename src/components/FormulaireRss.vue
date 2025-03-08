@@ -1,20 +1,20 @@
 <template>
-    <form @submit.prevent="handleSubmit" class="container mt-4 p-4 border rounded bg-light">
-      <h2 class="mb-3">{{ formTitle }}</h2>
-      <div class="mb-3">
-        <label for="title" class="form-label">Titre :</label>
-        <input type="text" id="title" v-model="title" class="form-control" required>
-        <div v-if="errors.title" class="text-danger small">{{ errors.title }}</div>
-      </div>
-      <div class="mb-3">
-        <label for="url" class="form-label">URL :</label>
-        <input type="url" id="url" v-model="url" class="form-control" required>
-        <div v-if="errors.url" class="text-danger small">{{ errors.url }}</div>
-      </div>
-      <button type="submit" class="btn btn-primary me-2">Enregistrer</button>
-      <button type="button" v-if="!isFeedSaved" @click="saveToFeedPreferences" class="btn btn-secondary me-2">Enregistrer dans les préférences</button>
-      <button type="button" v-if="isFeedSaved" @click="removeFromFeedPreferences" class="btn btn-danger">Supprimer des préférences</button>
-    </form>
+  <form @submit.prevent="handleSubmit" class="container mt-4 p-4 border rounded bg-light">
+    <h2 class="mb-3">{{ formTitle }} 📝</h2>
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre 📑 :</label>
+      <input type="text" id="title" v-model="title" class="form-control" required>
+      <div v-if="errors.title" class="text-danger small">{{ errors.title }}</div>
+    </div>
+    <div class="mb-3">
+      <label for="url" class="form-label">URL 🌐 :</label>
+      <input type="url" id="url" v-model="url" class="form-control" required>
+      <div v-if="errors.url" class="text-danger small">{{ errors.url }}</div>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Enregistrer 💾</button>
+    <button type="button" v-if="!isFeedSaved" @click="saveToFeedPreferences" class="btn btn-secondary me-2">Enregistrer dans les préférences 📥</button>
+    <button type="button" v-if="isFeedSaved" @click="removeFromFeedPreferences" class="btn btn-danger">Supprimer des préférences ❌</button>
+  </form>
 </template>
 
 <script>
@@ -79,11 +79,11 @@ export default {
           if (index >= 0 && index < feeds.length) {
             this.title = feeds[index].title;
             this.url = feeds[index].url;
-            this.formTitle = "Modifier un flux RSS";
+            this.formTitle = "Modifier un flux RSS ✏️";
           }
         }
       } else {
-        this.formTitle = "Ajouter un flux RSS";
+        this.formTitle = "Ajouter un flux RSS ➕";
         this.title = "";
         this.url = "";
       }
@@ -93,17 +93,17 @@ export default {
       let isValid = true;
 
       if (!this.title.trim()) {
-        this.errors.title = 'Le titre est obligatoire.';
+        this.errors.title = 'Le titre est obligatoire. ⚠️';
         isValid = false;
       }
       if (!this.url.trim()) {
-        this.errors.url = 'L\'URL est obligatoire.';
+        this.errors.url = 'L\'URL est obligatoire. ⚠️';
         isValid = false;
       } else {
         try {
           new URL(this.url);
         } catch (error) {
-          this.errors.url = 'L\'URL est invalide.';
+          this.errors.url = 'L\'URL est invalide. ❌';
           isValid = false;
         }
       }
@@ -129,15 +129,15 @@ export default {
       const isDuplicate = this.savedFeedPreferences.some(item => item.title === this.title && item.url === this.url);
       if (!isDuplicate) {
         this.savedFeedPreferences.push({ title: this.title, url: this.url });
-        alert('Flux enregistré dans les préférences !');
+        alert('Flux enregistré dans les préférences ! 🎉');
       } else {
-        alert("Le flux est déjà enregistré dans les préférences.");
+        alert("Le flux est déjà enregistré dans les préférences. ⚠️");
       }
     },
     removeFromFeedPreferences() {
       if (!this.title || !this.url) return;
       this.savedFeedPreferences = this.savedFeedPreferences.filter(item => !(item.title === this.title && item.url === this.url));
-      alert("Flux supprimé des préférences.");
+      alert("Flux supprimé des préférences. ❌");
     }
   },
 };

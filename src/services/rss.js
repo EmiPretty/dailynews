@@ -28,15 +28,14 @@ export async function getRssFeed(url) {
 
 function parseFeedData(xmlDoc) {
     let articles = [];
-    
     const items = xmlDoc.querySelectorAll('item');
-    items.forEach(item => {
 
+    items.forEach(item => {
         const title = item.querySelector('title')?.textContent || 'Pas de titre';
         const link = item.querySelector('link')?.textContent || '#';
         const description = item.querySelector('description')?.textContent || 'Pas de description';
         const pubDate = item.querySelector('pubDate')?.textContent || 'Date inconnue';
-        const imageUrl = extractImageUrl(item);
+        const imageUrl = extractImageUrl(item, description);
 
         const newsItem = {
             title,
@@ -52,20 +51,15 @@ function parseFeedData(xmlDoc) {
     return articles;
 }
 
-function extractImageUrl(item) {
-
-    const enclosureUrl = item.querySelector('enclosure[url]')?.getAttribute('url');
-    if (enclosureUrl) {
-        return enclosureUrl;
-    }
-    const mediaContentUrl = item.querySelector('media\\:content')?.getAttribute('url');
-    if (mediaContentUrl) {
-        return mediaContentUrl;
-    }
+function extractImageUrl(item, description) {
+    const enclosureUrl = item.querySelector('enclosure')?.getAttribute('url');
+    const mediaContentUrl = item.querySelector('media\\:content, content')?.getAttribute('url');
     const mediaThumbnailUrl = item.querySelector('media\\:thumbnail')?.getAttribute('url');
-    if (mediaThumbnailUrl) {
-        return mediaThumbnailUrl;
-    }
+    const imgFromDesc = extractImageFromDescription(description);
+    return enclosureUrl || mediaContentUrl || mediaThumbnailUrl || imgFromDesc || null;
+}
 
-    return null;
+function extractImageFromDescription(description) {
+    const match = description.match(/<img[^>]+src=["'](.*?)["']/);
+    return match ? match[1] : null;
 }
